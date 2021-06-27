@@ -32,14 +32,12 @@ namespace PatchModel.Generator
         public static DeclaredClass Generate(PatcherInfo patcher)
         {
             var sourceType = patcher.PatcherTypeSymbol;
-            var namespaceName = sourceType
-                .ContainingNamespace
-                .ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
+            var namespaceName = sourceType.ContainingNamespace.ToString();
             var methodBody = GenerateMethodBody(patcher);
             var patcherSymbol = GetDeclaringSymbol(sourceType);
             var patcherTypeName = sourceType.Name;
             var patchedTypeName = patcher.PatchingObjectType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-            var classKey = $"{patcherTypeName}_{patcher.PatchingObjectType.Name}.g.cs";
+            var classKey = $"{patcherTypeName}.Patch{patcher.PatchingObjectType.Name}.g.cs";
 
             return new DeclaredClass(
                 classKey,

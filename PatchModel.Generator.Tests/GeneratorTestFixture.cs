@@ -70,10 +70,9 @@ namespace PatchModel.Generator.Tests
         {
             var diagnostics = compilation
                 .GetDiagnostics()
-                .Where(d => d.Severity == DiagnosticSeverity.Error)
-                .Where(d => d.Id != "CS0518");
+                .Where(d => d.Severity == DiagnosticSeverity.Error);
 
-            if (beforeGenerator) 
+            if (beforeGenerator)
             {
                 diagnostics = diagnostics.Where(d => d.Id != "CS0246" && d.GetMessage().Contains("The type or namespace \"PatchModel"));
             }

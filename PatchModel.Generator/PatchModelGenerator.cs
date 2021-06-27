@@ -25,6 +25,8 @@ namespace PatchModel.Generator
             foreach (var patcher in GetDeclaredPatchers(context, receiver))
             {
                 var codeGemeratorResult = PatcherCodeGenerator.Generate(patcher);
+                Console.WriteLine($"Added {codeGemeratorResult.Key}: ");
+                Console.WriteLine(codeGemeratorResult.SourceCode);
                 context.AddSource(codeGemeratorResult.Key, codeGemeratorResult.SourceCode);
             }
         }
